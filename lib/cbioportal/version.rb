@@ -1,3 +1,3 @@
-module Cbioportal
-  VERSION = "0.1.0"
+class CBioPortal
+  VERSION = "0.0.1"
 end

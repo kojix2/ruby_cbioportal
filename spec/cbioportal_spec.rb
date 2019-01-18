@@ -1,9 +1,10 @@
-RSpec.describe Cbioportal do
+RSpec.describe CBioPortal do
   it "has a version number" do
-    expect(Cbioportal::VERSION).not_to be nil
+    expect(CBioPortal::VERSION).not_to be nil
   end
 
-  it "does something useful" do
-    expect(false).to eq(true)
+  it "#studies" do
+    cbp = CBioPortal.new
+    expect(cbp.studies.class).to be Daru::DataFrame
   end
 end

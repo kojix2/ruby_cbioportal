@@ -5,7 +5,7 @@ require "cbioportal/version"
 
 Gem::Specification.new do |spec|
   spec.name          = "cbioportal"
-  spec.version       = Cbioportal::VERSION
+  spec.version       = CBioPortal::VERSION
   spec.authors       = ["kojix2"]
   spec.email         = ["2xijok@gmail.com"]
 
@@ -37,6 +37,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_runtime_dependency 'httparty'
+  spec.add_runtime_dependency 'daru'
 
   spec.add_development_dependency "bundler", "~> 2.0"
   spec.add_development_dependency "rake", "~> 10.0"
