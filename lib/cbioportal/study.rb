@@ -1,7 +1,7 @@
-require 'ostruct'
-
 class CBioPortal
-  class Study < OpenStruct
-
+  class Study
+    def initialize(studyid)
+      p studyid
+    end
   end
 end

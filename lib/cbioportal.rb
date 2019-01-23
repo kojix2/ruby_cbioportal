@@ -1,13 +1,13 @@
-require "ostruct"
-require "httparty"
-require "daru"
+require 'ostruct'
+require 'httparty'
+require 'daru'
 
-require "cbioportal/version"
-require "cbioportal/study"
-require "cbioportal/cancer_type"
-require "cbioportal/gene"
+require 'cbioportal/version'
+require 'cbioportal/study'
+require 'cbioportal/cancer_type'
+require 'cbioportal/gene'
 
-# ToDo & Memo
+# TODO: & Memo
 # 1. return Daru::DataFrame
 # 2. return Hash
 # 3. redturn Struct class
@@ -24,24 +24,22 @@ require "cbioportal/gene"
 #  Gene-panels
 #  Sample-list
 
-
 # class for cBioPortal
 class CBioPortal
   include HTTParty
-  base_uri "http://www.cbioportal.org/api"
+  base_uri 'http://www.cbioportal.org/api'
 
-  def initialize
-  end
+  def initialize; end
 
   # get all studies
-  def get_all_studies(studyid = nil)
-    url = "/studies"
+  def get_all_studies(_studyid = nil)
+    url = '/studies'
     create_data_frame(url)
   end
 
   # get study by id
   def get_study(studyid)
-    url = "/studies/" + studyid
+    url = '/studies/' + studyid
     response = cget(url)
     # return hash. # should be Daru::Vector? or Construct?
     response.to_h
@@ -49,57 +47,63 @@ class CBioPortal
 
   # get all gene panels
   def get_all_gene_panels
-    url = "/gene-panels"
+    url = '/gene-panels'
     create_data_frame(url)
   end
 
   # get all genes
   def get_all_genes
-    url = "/genes"
+    url = '/genes'
     create_data_frame(url)
   end
 
   # get all molecular profiles
   def get_all_molecular_profiles
-    url = "/molecular-profiles"
+    url = '/molecular-profiles'
     create_data_frame(url)
   end
 
   # get all cancer types
   def get_all_cancer_types
-    url = "/cancer-types"
+    url = '/cancer-types'
     create_data_frame(url)
   end
 
   # get all clinical atributes
   def get_all_clinical_attributes
-    url = "/clinical-attributes"
+    url = '/clinical-attributes'
     create_data_frame(url)
   end
 
   # get all sample lists
   def get_all_sample_lists
-    url = "/sample-lists"
+    url = '/sample-lists'
     create_data_frame(url)
   end
-  
+
+  # get sample lists by Id
+  def get_sample_lists(studyid)
+    url = "/studies/#{studyid}/sample-lists"
+    create_data_frame(url)
+  end
 
   private
+
   def cget(url)
     self.class.get(url)
   end
 
   def create_data_frame(url)
     response = cget(url)
+    # p response
     hash_in_array_to_dataframe(response.to_a)
   end
 
   def hash_in_array_to_dataframe(array)
     # Daru::DataFrame.rows(hash_array) # not same length error
-    daru_vectors = array.map{|item| Daru::Vector.new(item)}
+    daru_vectors = array.map { |item| Daru::Vector.new(item) }
     Daru::DataFrame.new(daru_vectors).transpose
   end
-
 end
 
 # for debug

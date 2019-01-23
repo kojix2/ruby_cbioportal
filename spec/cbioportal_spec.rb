@@ -40,7 +40,7 @@ RSpec.describe CBioPortal do
     it "#get_all_cancer_types" do
       cbp = CBioPortal.new
       expect(cbp.get_all_cancer_types.class).to be Daru::DataFrame
-      end
+    end
   end
 
   describe "clinical-attributes" do
@@ -49,4 +49,17 @@ RSpec.describe CBioPortal do
       expect(cbp.get_all_clinical_attributes.class).to be Daru::DataFrame
     end
   end
+
+  describe "sample-lists" do
+    it "#get_all_sample_lists" do
+      cbp = CBioPortal.new
+      expect(cbp.get_all_sample_lists.class).to be Daru::DataFrame
+    end
+
+    it "#get_sample_lists by studyid" do
+      cbp = CBioPortal.new
+      expect(cbp.get_sample_lists("acc_tcga").class).to be Daru::DataFrame
+    end
+  end
+
 end
