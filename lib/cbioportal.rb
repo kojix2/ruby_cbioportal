@@ -1,11 +1,7 @@
-require 'ostruct'
 require 'httparty'
 require 'daru'
 
 require 'cbioportal/version'
-require 'cbioportal/study'
-require 'cbioportal/cancer_type'
-require 'cbioportal/gene'
 
 # TODO: & Memo
 # 1. return Daru::DataFrame
@@ -31,70 +27,17 @@ class CBioPortal
 
   def initialize; end
 
-  # get all studies
-  def get_all_studies(_studyid = nil)
-    url = '/studies'
-    create_data_frame(url)
+  def get(*url)
+    create_data_frame(*url)
   end
 
-  # get study by id
-  def get_study(studyid)
-    url = '/studies/' + studyid
-    response = cget(url)
-    # return hash. # should be Daru::Vector? or Construct?
-    response.to_h
-  end
-
-  # get all gene panels
-  def get_all_gene_panels
-    url = '/gene-panels'
-    create_data_frame(url)
-  end
-
-  # get all genes
-  def get_all_genes
-    url = '/genes'
-    create_data_frame(url)
-  end
-
-  # get all molecular profiles
-  def get_all_molecular_profiles
-    url = '/molecular-profiles'
-    create_data_frame(url)
-  end
-
-  # get all cancer types
-  def get_all_cancer_types
-    url = '/cancer-types'
-    create_data_frame(url)
-  end
-
-  # get all clinical atributes
-  def get_all_clinical_attributes
-    url = '/clinical-attributes'
-    create_data_frame(url)
-  end
-
-  # get all sample lists
-  def get_all_sample_lists
-    url = '/sample-lists'
-    create_data_frame(url)
-  end
-
-  # get sample lists by Id
-  def get_sample_lists(studyid)
-    url = "/studies/#{studyid}/sample-lists"
-    create_data_frame(url)
+  def cget(*url)
+    self.class.get(*url)
   end
 
   private
-
-  def cget(url)
-    self.class.get(url)
-  end
-
-  def create_data_frame(url)
-    response = cget(url)
+  def create_data_frame(*url)
+    response = cget(*url)
     # p response
     hash_in_array_to_dataframe(response.to_a)
   end
@@ -106,5 +49,4 @@ class CBioPortal
   end
 end
 
-# for debug
 C = CBioPortal.new
