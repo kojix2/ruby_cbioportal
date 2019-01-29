@@ -36,6 +36,7 @@ class CBioPortal
   end
 
   private
+
   def create_data_frame(*url)
     response = cget(*url)
     # p response
