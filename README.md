@@ -5,6 +5,10 @@
 ## Installation
 
 ```bash
+gem install cbioportal
+```
+
+```bash
 git clone https://github.com/kojix2/ruby_cbioportal
 cd ruby_cbioportal
 bundle install
