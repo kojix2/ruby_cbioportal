@@ -4,10 +4,10 @@
 
 ## Installation
 Requirements
-* Daru
-* httparty
-* Jupyter & IRuby (stongly recommended)
-* Daru::View (for visualizeation)
+* [Daru](https://github.com/SciRuby/daru)
+* [httparty](https://github.com/jnunemaker/httparty)
+* Jupyter & [IRuby](https://github.com/SciRuby/iruby) (stongly recommended)
+* [Daru::View](https://github.com/SciRuby/daru-view) (recommended for visualizeation)
 
 ```bash
 gem install cbioportal
@@ -21,18 +21,14 @@ bundle exec rake install
 ```
 
 ## Usage
+Use [cbioPortal web API](http://www.cbioportal.org/api/swagger-ui.html). 
 Open Jupyter notebook.
 
 ```bash
 jupyter notebook
 ```
 
-Open [cbioPortal web API](http://www.cbioportal.org/api/swagger-ui.html) web page. 
-
-
 ```ruby
-require 'daru'
-require 'daru/view'
 require 'cbioportal'
 
 C.get "/studies"
@@ -44,7 +40,8 @@ C.get "/studies"
 * It is too early to decide the policy.
 
 ## Contributing
-Bug reports and pull requests are welcome on GitHub.
+* Bug reports and pull requests are welcome on GitHub.
+* Write a blog post about this gem. 
 
 ## License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
